@@ -2,7 +2,7 @@ name: 🔄 JWT Token Generator (Every 4 Hours)
 
 on:
   schedule:
-    - cron: '0 */4 * * *'   # jalan tiap 4 jam sekali (UTC)
+    - cron: '0 */1 * * *'   # jalan tiap 1 jam sekali (UTC)
   workflow_dispatch:
 
 permissions:
