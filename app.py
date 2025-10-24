@@ -14,26 +14,34 @@ from google.protobuf.message import DecodeError
 
 app = Flask(__name__)
 
-# ========== MODE MAINTENANCE ==========
-MAINTENANCE = True  # ubah ke False untuk hidupkan API
+# ======================================================
+# =============== MODE MAINTENANCE SETUP ===============
+# ======================================================
+
+# True  = aktifkan mode maintenance (domain tertentu diblok)
+# False = semua domain bisa diakses normal
+MAINTENANCE = True  # ubah ke False untuk hidupkan semua API
 
 @app.before_request
 def maintenance_check():
+    # Ambil domain (host) dari request
     host = request.headers.get("Host", "").lower()
 
-    # Domain yang ingin kamu maintenance-kan
+    # Domain yang ingin kamu matikan sementara
     maintenance_domain = "like-ai-danssrmdn.vercel.app"
 
-    # Jika domain yang diakses adalah domain maintenance
-    if maintenance_domain in host:
+    # Jika mode maintenance aktif DAN domain cocok, blok aksesnya
+    if MAINTENANCE and maintenance_domain in host:
         return jsonify({
             "status": "error",
             "message": "⚠️ The API is under maintenance. Please try again later."
         }), 503
 
-    # Kalau domain lain (aktif), tetap jalan normal
+    # Kalau domain lain atau MAINTENANCE = False → tetap jalan normal
 
-# ======================================
+# ======================================================
+# ============= AKHIR DARI MODE MAINTENANCE ============
+# ======================================================
 
 
 def load_tokens(server_name):
