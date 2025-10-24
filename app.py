@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 # True  = aktifkan mode maintenance (domain tertentu diblok)
 # False = semua domain bisa diakses normal
-MAINTENANCE = False  # ubah ke False untuk hidupkan semua API
+MAINTENANCE = True # ubah ke False untuk hidupkan semua API
 
 @app.before_request
 def maintenance_check():
