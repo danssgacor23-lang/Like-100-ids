@@ -19,12 +19,20 @@ MAINTENANCE = True  # ubah ke False untuk hidupkan API
 
 @app.before_request
 def maintenance_check():
-    """Blokir semua request jika maintenance aktif."""
-    if MAINTENANCE:
+    host = request.headers.get("Host", "").lower()
+
+    # Domain yang ingin kamu maintenance-kan
+    maintenance_domain = "like-ai-danssrmdn.vercel.app"
+
+    # Jika domain yang diakses adalah domain maintenance
+    if maintenance_domain in host:
         return jsonify({
             "status": "error",
             "message": "⚠️ The API is under maintenance. Please try again later."
         }), 503
+
+    # Kalau domain lain (aktif), tetap jalan normal
+
 # ======================================
 
 
