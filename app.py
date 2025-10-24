@@ -34,7 +34,7 @@ def maintenance_check():
     if MAINTENANCE and maintenance_domain in host:
         return jsonify({
             "status": "error",
-            "message": "⚠️ The API is under maintenance. Please try again later."
+            "message": "⚠️ Spam detected API wait a moment and try again."
         }), 503
 
     # Kalau domain lain atau MAINTENANCE = False → tetap jalan normal
