@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # Konfigurasi
 MAX_RETRIES = 5
 MAX_WORKERS = 15
-API_URL_TEMPLATE = "https://jwt-api-aditya-ffm.vercel.app/token?uid={uid}&password={password}"
+API_URL_TEMPLATE = "https://jwt-generate-danssrmdn.vercel.app/token?uid={uid}&password={password}"
 
 INPUT_FILE = "uid_bd.json"      # daftar akun UID + password
 OUTPUT_FILE = "token_bd.json"   # hasil generate token
