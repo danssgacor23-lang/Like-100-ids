@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 # True  = aktifkan mode maintenance (domain tertentu diblok)
 # False = semua domain bisa diakses normal
-MAINTENANCE = False # ubah ke False untuk hidupkan semua API
+MAINTENANCE = True # ubah ke False untuk hidupkan semua API
 
 @app.before_request
 def maintenance_check():
@@ -34,7 +34,7 @@ def maintenance_check():
     if MAINTENANCE and maintenance_domain in host:
         return jsonify({
             "status": "error",
-            "message": "⚠️ Spam detected API wait a moment and try again."
+            "message": "⚠️ Your API has been permanently locked, wait for the FREE FIRE OB51 update, and try again."
         }), 503
 
     # Kalau domain lain atau MAINTENANCE = False → tetap jalan normal
